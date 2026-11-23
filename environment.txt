@@ -1,0 +1,27 @@
+Byte Busters Project Environment
+=================================
+
+Python Version: 3.13.1
+Platform: Windows (win32)
+
+Tested Package Versions:
+  numpy        2.2.6
+  pandas       3.0.3
+  scikit-learn 1.9.1
+  matplotlib   3.11.2
+  scipy        1.17.1
+  jupyter      1.1.1
+
+Random Seed: 42 (used consistently across all experiments)
+
+Setup Instructions:
+1. Create virtual environment: python -m venv venv
+2. Activate: venv\Scripts\activate (Windows) or source venv/bin/activate (Linux/Mac)
+3. Install dependencies: pip install -r requirements.txt
+4. Run notebook: jupyter notebook notebooks/experiments.ipynb
+
+Note: The code uses stable scikit-learn APIs (Pipeline, StandardScaler, 
+SelectKBest, PCA, Ridge, Lasso, RandomForestRegressor) and should work 
+with scikit-learn 1.3+, pandas 2.0+, numpy 1.24+.
+
+Dataset downloads automatically via OpenML on first run.
