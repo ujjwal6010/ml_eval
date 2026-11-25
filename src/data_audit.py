@@ -39,16 +39,19 @@ def data_dictionary(X: pd.DataFrame, y: pd.Series) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def basic_audit(X: pd.DataFrame, y: pd.Series) -> dict:
-    """Basic dataset statistics and checks."""
-    corr = X.corr(numeric_only=True)
-    cols = corr.columns
-    high_corr_pairs = []
-    for i in range(len(cols)):
-        for j in range(i + 1, len(cols)):
-            v = corr.iloc[i, j]
-            if pd.notna(v) and abs(v) > 0.95:
-                high_corr_pairs.append((cols[i], cols[j], float(v)))
+def basic_audit(
+    X: pd.DataFrame,
+    y: pd.Series,
+    include_pairwise_corr: bool = False,
+) -> dict:
+    """Audit data quality, optionally counting highly correlated feature pairs."""
+    high_corr_pairs = None
+    if include_pairwise_corr:
+        corr = X.corr(numeric_only=True).to_numpy()
+        high_corr_pairs = sum(
+            np.count_nonzero(np.abs(corr[i, i + 1:]) > 0.95)
+            for i in range(corr.shape[0] - 1)
+        )
     
     target_corr = X.corrwith(y).sort_values(key=np.abs, ascending=False)
     
@@ -59,7 +62,7 @@ def basic_audit(X: pd.DataFrame, y: pd.Series) -> dict:
         "missing_y": int(y.isna().sum()),
         "duplicate_rows": int(X.duplicated().sum()),
         "constant_features": int((X.nunique(dropna=True) <= 1).sum()),
-        "high_corr_pairs": len(high_corr_pairs),
+        "high_corr_pairs": high_corr_pairs,
         "top_target_correlations": target_corr.head(10).to_dict(),
     }
 

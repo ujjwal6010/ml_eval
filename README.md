@@ -1,4 +1,4 @@
-﻿# Prediction When Features Outnumber Samples
+# Prediction When Features Outnumber Samples
 
 **Team:** Byte Busters, Batch A1  
 **Course:** Machine Learning Lab (AIP301)  
@@ -15,9 +15,9 @@
 
 ## Overview
 
-This project investigates regression model behavior when feature count (p) approaches or exceeds sample count (n) â€” the classic "p > n" problem common in genomics and high-dimensional data analysis.
+This project investigates regression model behavior when feature count (p) approaches or exceeds sample count (n) — the classic "p > n" problem common in genomics and high-dimensional data analysis.
 
-**Research Question:** How do different regression models perform when p â‰¥ n, and what strategies help maintain reliable predictions?
+**Research Question:** How do different regression models perform when p ≥ n, and what strategies help maintain reliable predictions?
 
 ## Dataset
 
@@ -39,33 +39,33 @@ This project investigates regression model behavior when feature count (p) appro
 
 ```
 ByteBusters_Submission/
-â”œâ”€â”€ README.md                    # This file
-â”œâ”€â”€ requirements.txt             # Python dependencies
-â”œâ”€â”€ environment.txt              # Environment details
-â”œâ”€â”€ data/
-â”‚   â”œâ”€â”€ raw/                     # Raw dataset (auto-downloaded)
-â”‚   â””â”€â”€ processed/               # Data dictionary
-â”œâ”€â”€ notebooks/
-â”‚   â””â”€â”€ experiments.ipynb        # Main experiment notebook
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ data_loader.py          # Dataset loading utilities
-â”‚   â”œâ”€â”€ data_audit.py           # Data quality checks
-â”‚   â”œâ”€â”€ preprocessing.py        # Data preprocessing
-â”‚   â”œâ”€â”€ feature_engineering.py  # Feature manipulation
-â”‚   â”œâ”€â”€ models.py               # Model definitions
-â”‚   â”œâ”€â”€ evaluation.py           # Metrics and evaluation
-â”‚   â”œâ”€â”€ experiments.py          # Experiment logging
-â”‚   â””â”€â”€ visualization.py        # Plotting functions
-â”œâ”€â”€ results/
-â”‚   â”œâ”€â”€ experiment_log.csv      # Detailed experiment results
-â”‚   â”œâ”€â”€ final_results.csv       # Summary of model performance
-â”‚   â”œâ”€â”€ summary.json            # JSON summary
-â”‚   â””â”€â”€ figures/                # Generated plots
-â”œâ”€â”€ report/
-â”‚   â”œâ”€â”€ final_report.md         # Typed 4-6 page report
-â”‚   â””â”€â”€ model_card.md           # Model documentation
-â””â”€â”€ reflection/
-    â””â”€â”€ reflection_draft.md     # Handwritten reflection draft
+|-- README.md                    # This file
+|-- requirements.txt             # Python dependencies
+|-- environment.txt              # Environment details
+|-- data/
+|   |-- raw/                     # Raw dataset (auto-downloaded)
+|   `-- processed/               # Data dictionary
+|-- notebooks/
+|   `-- experiments.ipynb        # Main experiment notebook
+|-- src/
+|   |-- data_loader.py          # Dataset loading utilities
+|   |-- data_audit.py           # Data quality checks
+|   |-- preprocessing.py        # Data preprocessing
+|   |-- feature_engineering.py  # Feature manipulation
+|   |-- models.py               # Model definitions
+|   |-- evaluation.py           # Metrics and evaluation
+|   |-- experiments.py          # Experiment logging
+|   `-- visualization.py        # Plotting functions
+|-- results/
+|   |-- experiment_log.csv      # Detailed experiment results
+|   |-- final_results.csv       # Summary of model performance
+|   |-- summary.json            # JSON summary
+|   `-- figures/                # Generated plots
+|-- report/
+|   |-- final_report.md         # Typed 4-6 page report
+|   `-- model_card.md           # Model documentation
+`-- reflection/
+    `-- reflection_draft.md     # Handwritten reflection draft
 ```
 
 ## Installation
@@ -91,12 +91,12 @@ The dataset downloads automatically on first run. All results save to the `resul
 
 ## How to Run
 
-**Option A â€” Notebook (Recommended):**
+**Option A — Notebook (Recommended):**
 1. Open `notebooks/experiments.ipynb`
 2. Run all cells top-to-bottom
 3. Results appear in `results/` folder
 
-**Option B â€” Python Scripts:**
+**Option B — Python Scripts:**
 ```bash
 cd src
 python -c "from data_loader import load_dataset; X, y, _, _ = load_dataset(); print(f'Loaded: {X.shape}')"
@@ -104,28 +104,28 @@ python -c "from data_loader import load_dataset; X, y, _, _ = load_dataset(); pr
 
 ## Experiments Conducted
 
-1. **Data Audit** â€” Missing values, duplicates, correlations, potential leakage
-2. **Feature-to-Sample Ratios** â€” p/n < 1, â‰ˆ 1, > 1
-3. **Model Comparison** â€” Dummy, Linear, Ridge, Lasso, Random Forest
-4. **Complexity Control** â€” Ridge/Lasso regularization
-5. **Feature Selection** â€” SelectKBest and PCA
-6. **Nested Cross-Validation** â€” Inner tuning + outer evaluation
-7. **Repeated Splits** â€” 10 train/test splits for stability
-8. **Learning Curves** â€” Effect of training set size
-9. **Noise Experiment** â€” Adding irrelevant features
-10. **Redundancy Experiment** â€” Adding correlated features
-11. **Target Permutation** â€” Leakage sanity check
-12. **Feature Stability** â€” Selection consistency across splits
-13. **Feature Ablation** â€” Impact of removing key features
+1. **Data Audit** — Missing values, duplicates, target correlations, potential leakage, and an optional all-pairs correlation scan
+2. **Feature-to-Sample Ratios** — p/n < 1, ≈ 1, > 1
+3. **Model Comparison** — Dummy, Linear, Ridge, Lasso, Random Forest
+4. **Complexity Control** — Ridge/Lasso regularization
+5. **Feature Selection** — SelectKBest and PCA
+6. **Nested Cross-Validation** — Inner tuning + outer evaluation
+7. **Repeated Splits** — 10 train/test splits for stability
+8. **Learning Curves** — Effect of training set size
+9. **Noise Experiment** — Adding irrelevant features
+10. **Redundancy Experiment** — Adding correlated features
+11. **Target Permutation** — Leakage sanity check
+12. **Feature Stability** — Selection consistency across splits
+13. **Feature Ablation** — Impact of removing key features
 
 ## Key Results
 
-| Model | Mean RÂ² | Std RÂ² | Mean RMSE | Mean MAE |
+| Model | Mean R² | Std R² | Mean RMSE | Mean MAE |
 |---|---:|---:|---:|---:|
 | Random Forest | 0.987 | 0.008 | 18.9 | 9.7 |
 | Lasso | 0.978 | 0.008 | 24.9 | 15.0 |
 | Ridge | 0.965 | 0.007 | 31.8 | 21.4 |
-| Dummy | ~0.0 | â€” | â€” | â€” |
+| Dummy | ~0.0 | — | — | — |
 
 **Key Findings:**
 - Regularized models handle p > n effectively
@@ -155,7 +155,7 @@ python -c "from data_loader import load_dataset; X, y, _, _ = load_dataset(); pr
 
 ---
 
-**Contact:** Byte Busters Team â€” IDs: 1022, 1023, 1024, 1027, 1028  
+**Contact:** Byte Busters Team — IDs: 1001, 1003, 1004, 1006\
 **Course:** AIP301, IIIT Kota
 
 

@@ -1,4 +1,4 @@
-﻿# Reflection â€” Byte Busters Project Experience
+# Reflection — Byte Busters Project Experience
 
 **Team:** Byte Busters, Batch A1  
 **Project:** Prediction When Features Outnumber Samples  
@@ -10,21 +10,21 @@
 
 ### Technical Insights
 
-**High-dimensional regression works with regularization.** We saw Ridge and Lasso give strong predictions (RÂ² around 0.96-0.98) even though we had 375 features and only 337 samples. Plain Linear Regression completely failed â€” it couldn't even compute stable coefficients. This wasn't just theory from lectures; we actually watched it break.
+**High-dimensional regression works with regularization.** We saw Ridge and Lasso give strong predictions (R² around 0.96-0.98) even though we had 375 features and only 337 samples. Plain Linear Regression completely failed — it couldn't even compute stable coefficients. This wasn't just theory from lectures; we actually watched it break.
 
-**More data makes a huge difference.** Our learning curve showed validation RÂ² jumping from 0.77 with 20% of data to 0.99 with all of it. The training score stayed near 1.0 the whole time, which means the model was overfitting badly at small sample sizes. This made the p > n problem really concrete for us.
+**More data makes a huge difference.** Our learning curve showed validation R² jumping from 0.77 with 20% of data to 0.99 with all of it. The training score stayed near 1.0 the whole time, which means the model was overfitting badly at small sample sizes. This made the p > n problem really concrete for us.
 
-**Not all features matter equally.** When we removed just the top 10 most correlated features, RÂ² dropped by 0.14. The model was basically relying on a handful of strong predictors. Feature selection found about 18 features that showed up consistently across different splits.
+**Not all features matter equally.** When we removed just the top 10 most correlated features, R² dropped by 0.14. The model was basically relying on a handful of strong predictors. Feature selection found about 18 features that showed up consistently across different splits.
 
-**Noise vs redundancy are totally different.** Adding random junk features steadily hurt performance â€” RÂ² fell to 0.80 when we added 500 noise features. But adding exact copies or highly correlated duplicates barely changed Ridge at all. Ridge just spreads the weight across correlated features.
+**Noise vs redundancy are totally different.** Adding random junk features steadily hurt performance — R² fell to 0.80 when we added 500 noise features. But adding exact copies or highly correlated duplicates barely changed Ridge at all. Ridge just spreads the weight across correlated features.
 
-**The permutation test is a real safety net.** When we shuffled the target values during training, RÂ² collapsed from 0.96 to -1.15. That confirmed our pipeline wasn't leaking information and the good performance was real.
+**The permutation test is a real safety net.** When we shuffled the target values during training, R² collapsed from 0.96 to -1.15. That confirmed our pipeline wasn't leaking information and the good performance was real.
 
 ### Practical Skills
 
 **Pipelines prevent leakage automatically.** Wrapping scaler + feature selector + model in a scikit-learn Pipeline meant we couldn't accidentally fit on test data. This made the code cleaner and safer.
 
-**Nested CV actually matters.** It gave us RÂ² around 0.95, consistent with our repeated splits. Without it, we might have tuned on the test set and gotten overly optimistic numbers.
+**Nested CV actually matters.** It gave us R² around 0.95, consistent with our repeated splits. Without it, we might have tuned on the test set and gotten overly optimistic numbers.
 
 **Logging experiments pays off.** We saved every single run to CSV automatically. When writing the report, we could just load the results instead of trying to remember what worked.
 
@@ -38,7 +38,7 @@
 
 **Using the same splits for all models.** We used identical random seeds across all model comparisons, so the differences we saw were real model differences, not just random variation from different data splits.
 
-**Visualizations helped understanding.** Plots made patterns obvious that would have been hard to see in tables â€” like the learning curve gap closing, or the noise experiment's steady decline.
+**Visualizations helped understanding.** Plots made patterns obvious that would have been hard to see in tables — like the learning curve gap closing, or the noise experiment's steady decline.
 
 ---
 
@@ -58,7 +58,7 @@ The Pipeline API helped a lot once we understood it, but there was a learning cu
 
 ### 3. Interpreting High Redundancy
 
-The dataset had 1,487 feature pairs correlated above 0.95. That made us nervous â€” was the model learning real patterns or just memorizing redundant copies of the same information? We added the permutation check and ablation experiment specifically to answer this. It turned out the signal was real, but we wouldn't have been confident without those extra checks.
+The dataset had 1,487 feature pairs correlated above 0.95. That made us nervous — was the model learning real patterns or just memorizing redundant copies of the same information? We added the permutation check and ablation experiment specifically to answer this. It turned out the signal was real, but we wouldn't have been confident without those extra checks.
 
 ---
 
@@ -72,7 +72,7 @@ The dataset had 1,487 feature pairs correlated above 0.95. That made us nervous 
 
 **Add more feature selection methods.** We used SelectKBest and PCA. Next time we'd try Recursive Feature Elimination (RFE) or Boruta to see if conclusions hold across different selection strategies.
 
-**Include calibration metrics.** RÂ², RMSE, and MAE tell you about prediction accuracy but not calibration (are predicted probabilities or magnitudes well-calibrated?). We'd look at residual plots and calibration curves.
+**Include calibration metrics.** R², RMSE, and MAE tell you about prediction accuracy but not calibration (are predicted probabilities or magnitudes well-calibrated?). We'd look at residual plots and calibration curves.
 
 **Link report figures directly to experiment logs.** Right now the report cites numbers from the CSV manually. We could have auto-generated report tables from the logs so they can never drift out of sync.
 
@@ -106,7 +106,7 @@ The dataset had 1,487 feature pairs correlated above 0.95. That made us nervous 
 - If a model scores high on a test set, it's good
 
 **Now I understand:**
-- Regularization is *essential* when p â‰¥ n, not optional
+- Regularization is *essential* when p ≥ n, not optional
 - Irrelevant features actively hurt; more isn't always better
 - Test set performance can be misleading if you tuned on it (nested CV prevents this)
 - Data leakage is subtle and easy to miss
@@ -118,7 +118,7 @@ The dataset had 1,487 feature pairs correlated above 0.95. That made us nervous 
 
 This project made the p > n problem real instead of abstract. We saw models fail (Linear Regression), saw regularization work (Ridge/Lasso), and learned that validation integrity matters more than fancy models. The dataset access problem forced us to adapt and document honestly. The experiments taught us to distrust easy answers and check for leakage.
 
-If we had to do it again, we'd start earlier, secure data access first, use temporal splits, and try more feature selection methods. But overall, this was the most hands-on, practical ML experience we've had in the course. We actually understand overfitting, regularization, and validation now â€” not just definitions, but what they look like in real experiments.
+If we had to do it again, we'd start earlier, secure data access first, use temporal splits, and try more feature selection methods. But overall, this was the most hands-on, practical ML experience we've had in the course. We actually understand overfitting, regularization, and validation now — not just definitions, but what they look like in real experiments.
 
 ---
 

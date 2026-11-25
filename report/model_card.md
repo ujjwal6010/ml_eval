@@ -1,4 +1,4 @@
-﻿# Model Card
+# Model Card
 
 **Project:** Prediction When Features Outnumber Samples  
 **Team:** Byte Busters, Batch A1  
@@ -17,7 +17,7 @@
 - Lasso classification (L1 regularization)
 - Random Forest Regressor
 
-**Best Performer:** Random Forest (RÂ² â‰ˆ 0.987)
+**Best Performer:** Random Forest (R² ≈ 0.987)
 
 ## Intended Use
 
@@ -46,15 +46,15 @@ Educational demonstration of classification in high-dimensional settings (p > n)
 
 **Target:** LBL_aUAminpA_fut_001 (next-day minimum price)  
 **Type:** Numeric classification  
-**Range:** 278â€“1088  
-**Mean:** â‰ˆ470, Std: â‰ˆ174  
+**Range:** 278–1088\
+**Mean:** ≈470, Std: ≈174\
 **Unique values:** 61 out of 337 samples
 
 **Source:** Kaggle dataset (crawford/gene-expression), based on the landmark Golub et al. study (Science, 1999).
 
 ## Dataset Limitations
 
-- n=337 samples, p=375 features â†’ p/n = 1.11
+- n=337 samples, p=375 features → p/n = 1.11
 - Not gene expression/microarray data (preferred source unavailable)
 - Time-ordered data with random splits (temporal splits preferable)
 - Features highly correlated with target (potential near-leakage)
@@ -76,37 +76,37 @@ Educational demonstration of classification in high-dimensional settings (p > n)
 
 **Repeated Evaluation:** 10 independent splits with consistent seeds across models
 
-**Metrics:** RÂ² (primary), RMSE, MAE
+**Metrics:** R² (primary), RMSE, MAE
 
 ## Performance (10 Repeated Splits)
 
 ### Ridge classification
 | Metric | Mean | Std | Worst |
 |---|---|---|---|
-| RÂ² | 0.965 | 0.007 | 0.955 |
-| RMSE | 31.8 | â€” | â€” |
-| MAE | 21.4 | â€” | â€” |
+| R² | 0.965 | 0.007 | 0.955 |
+| RMSE | 31.8 | — | — |
+| MAE | 21.4 | — | — |
 
 ### Lasso classification
 | Metric | Mean | Std | Worst |
 |---|---|---|---|
-| RÂ² | 0.978 | 0.008 | 0.967 |
-| RMSE | 24.9 | â€” | â€” |
-| MAE | 15.0 | â€” | â€” |
+| R² | 0.978 | 0.008 | 0.967 |
+| RMSE | 24.9 | — | — |
+| MAE | 15.0 | — | — |
 
 ### Random Forest
 | Metric | Mean | Std | Worst |
 |---|---|---|---|
-| RÂ² | 0.987 | 0.008 | 0.972 |
-| RMSE | 18.9 | â€” | â€” |
-| MAE | 9.7 | â€” | â€” |
+| R² | 0.987 | 0.008 | 0.972 |
+| RMSE | 18.9 | — | — |
+| MAE | 9.7 | — | — |
 
 ## Known Failure Cases
 
-- **Linear classification:** Unstable when p â‰¥ n (rank-deficient design matrix)
-- **Small training sets (â‰¤20%):** Severe overfitting (train RÂ² â‰ˆ 1, val RÂ² << 1)
+- **Linear classification:** Unstable when p ≥ n (rank-deficient design matrix)
+- **Small training sets (≤20%):** Severe overfitting (train R² ≈ 1, val R² << 1)
 - **Irrelevant features:** Performance degrades with increasing noise feature count
-- **Feature ablation:** Removing top 10 features drops RÂ² by ~0.14
+- **Feature ablation:** Removing top 10 features drops R² by ~0.14
 - **Target permutation:** Performance collapses (expected, confirms leakage-free pipeline)
 
 ## Risks
@@ -126,14 +126,14 @@ Educational demonstration of classification in high-dimensional settings (p > n)
 
 ## Ethical Considerations
 
-- Educational project only â€” not for real-world decision-making
+- Educational project only — not for real-world decision-making
 - No sensitive personal data involved
 - No fairness concerns (cancer classification task)
 - Transparent reporting of limitations and failed experiments
 
 ## Maintenance
 
-**Contact:** Byte Busters Team (IDs: 1022, 1023, 1024, 1027, 1028)  
+**Contact:** Byte Busters Team (IDs: 1001, 1003, 1004, 1006)\
 **Course:** AIP301, IIIT Kota  
 **Reproducibility:** Seed=42, logs in `results/`, code in `src/`
 

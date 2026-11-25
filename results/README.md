@@ -1,4 +1,4 @@
-﻿# Results Directory
+# Results Directory
 
 This directory will be populated when you run the experiments.
 
@@ -21,10 +21,10 @@ After running `notebooks/experiments.ipynb`, this folder will contain:
 
 ## How to Generate
 
-`ash
+```bash
 cd ByteBusters_Submission
 jupyter notebook notebooks/experiments.ipynb
-`
+```
 
 Then: **Kernel → Restart & Run All**
 
