@@ -1,0 +1,5 @@
+experiment_id,timestamp,dataset,experiment_type,model,parameters,feature_set_name,original_feature_count,added_feature_count,retained_feature_count,training_sample_count,p_over_n_ratio,split_seed,r2,rmse,mae,training_runtime_sec,inference_runtime_sec,notes
+model_comparison,2026-11-25T23:46:05,gene_expression,single_split,Dummy (mean),,,7129,0,0,57,0.0,42,-0.0013850415512466352,0.47173086525434227,0.4502923976608188,0.0,0.0,
+model_comparison,2026-11-25T23:46:05,gene_expression,single_split,Ridge,,,7129,0,0,57,0.0,42,0.44778434170951287,0.3503064240507436,0.29720705836296096,0.0,0.0,
+model_comparison,2026-11-25T23:46:06,gene_expression,single_split,Lasso,,,7129,0,0,57,0.0,42,0.41584790457645926,0.36029373677707316,0.2973405600487949,0.0,0.0,
+model_comparison,2026-11-25T23:46:12,gene_expression,single_split,Random Forest,,,7129,0,0,57,0.0,42,0.3524050000000001,0.379354715273186,0.33866666666666667,0.0,0.0,

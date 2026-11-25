@@ -1,0 +1,4 @@
+Model,Mean R²,Std R²,Worst R²
+Ridge,0.1174,0.4659,-1.0391
+Lasso,-0.1512,0.6185,-1.8155
+Random Forest,0.0348,0.3895,-0.9712
